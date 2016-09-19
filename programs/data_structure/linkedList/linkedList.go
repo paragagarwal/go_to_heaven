@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-	Structure defintoion for Linked List
+	Structure definition for Linked List
 */
 type Node struct {
 	value int
@@ -65,6 +65,17 @@ func reverse(head *Node) (*Node) {
 }
 
 /*
+	Find length of the list
+*/
+func findLen(head *Node) (int){
+	sum := 0
+	for e := head; e != nil; e = e.next {
+		sum += 1
+	}
+	return sum
+}
+
+/*
 	print the list in sequence
 */
 func printList(head *Node, str string) {
@@ -82,4 +93,6 @@ func main() {
 	printList(head, "initial list")
 	head = reverse(head)
 	printList(head, "reverse list")
+	fmt.Println(" List Len :: ",findLen(head))
+
 	}
