@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-	Struct Definition for binary Tree
+	Struct Definition for Vertex :: binary Tree
 */
 type Vertex struct {
 	right, left *Vertex
@@ -11,14 +11,14 @@ type Vertex struct {
 }
 
 /*
-	Method to create Node for binary Tree
+	Method to create Vertex for binary Tree
 */
 func createVertex(val int) (*Vertex){
 	return &Vertex{nil, nil, val}
 }
 
 /*
-	PreOrder Traversal
+	In Order Traversal
 */
 func InOrderTraversal(v *Vertex){
 	if v == nil{
@@ -30,7 +30,7 @@ func InOrderTraversal(v *Vertex){
 }
 
 /*
-	Pre Order Traversal
+	Pre-Order Traversal
 */
 func PreOrderTraversal(v *Vertex) {
 	if v == nil{
@@ -42,7 +42,7 @@ func PreOrderTraversal(v *Vertex) {
 }
 
 /*
-	Post Order Traversal
+	Post-Order Traversal
 */
 func PostOrderTraversal(v *Vertex) {
 	if v == nil{
@@ -51,6 +51,21 @@ func PostOrderTraversal(v *Vertex) {
 	PostOrderTraversal(v.right)
 	fmt.Println(v.val)
 	PostOrderTraversal(v.left)
+}
+
+/*
+	Method to find height of tree
+*/
+func height(v *Vertex) (int) {
+	if v == nil{
+		return 0
+	}
+	leftH := 1+height(v.right)
+	rightH := 1+height(v.left)
+	if (leftH > rightH){
+		return leftH
+	}
+	return rightH
 }
 
 func main() {
@@ -65,5 +80,6 @@ func main() {
 	PreOrderTraversal(root)
 	fmt.Println(" Post Order Traversal")
 	PostOrderTraversal(root)
+	fmt.Println(" Tree Height :: ", height(root))
 }
 
